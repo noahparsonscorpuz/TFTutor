@@ -15,3 +15,9 @@ TFTutor is a machine learning-powered gameplay companion designed to analyze TFT
 - Machine Learning Models: TFTutor utilizes machine learning algorithms to analyze gameplay data and provide recommendations and insights. This includes predicting optimal champion compositions, item builds, and strategies based on the current game state.
 
 - User Interface: TFTutor features a user-friendly interface that allows players to input their gameplay data and receive personalized recommendations and insights. The interface is designed for ease of use and intuitive interaction.
+
+## Current TODO
+
+- Format the json data that is sucessfully being pulled from the Riot API.
+- Process and present the appropriate data visually (graphs, etc.). 
+- Plan on how to implement ML functionalities.
