@@ -1,6 +1,6 @@
-#TFTutor
+# TFTutor
 
-##A Data-Driven Machine Learning Gameplay Companion
+## A Data-Driven Machine Learning Gameplay Companion
 
 Welcome to TFTutor, your personal companion for mastering Riot's Team Fight Tactics (TFT)!
 
@@ -8,7 +8,7 @@ TFTutor is a personal project born out of my passion for Riot's Team Fight Tacti
 
 TFTutor is a machine learning-powered gameplay companion designed to analyze TFT matches and provide actionable recommendations and insights. By leveraging the vast amount of gameplay data available, TFTutor aims to help players make informed decisions, optimize their strategies, and ultimately improve their performance on the battlefield.
 
-##Key Features
+## Key Features
 
 - Data Collection and Processing: TFTutor collects and processes gameplay data from TFT matches, including match outcomes, player actions, champion compositions, item choices, and more.
 
