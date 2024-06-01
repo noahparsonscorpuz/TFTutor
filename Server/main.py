@@ -63,6 +63,25 @@ def get_player_stats(summoner_id):
         return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
     except requests.exceptions.RequestException as req_err:
         return jsonify({"error": f"Request error occurred: {req_err}"}), 500
+    
+@app.route('/recent-matches/<puuid>')
+def get_recent_matches(puuid):
+    try:
+
+        # Endpoint to get recent matches
+        matches_url = f'https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/{puuid}/ids'
+        
+        # Fetch recent matches
+        matches_response = requests.get(matches_url, headers={'X-Riot-Token': RIOT_API_KEY})
+        matches_response.raise_for_status()
+        matches_data = matches_response.json()
+        
+        return jsonify(matches_data)
+    
+    except requests.exceptions.HTTPError as http_err:
+        return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
+    except requests.exceptions.RequestException as req_err:
+        return jsonify({"error": f"Request error occurred: {req_err}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
