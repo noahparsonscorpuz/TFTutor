@@ -79,3 +79,23 @@ def search_riot_api(gameName, tagLine):
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
+
+'''
+def get_summoner_style(puuid):
+    try:
+        style_url = f'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={RIOT_API_KEY}'
+
+        style_response = requests.get(style_url)
+        style_response.raise_for_status()  # Raise an HTTPError for bad responses
+        style_data = style_response.json()
+
+        summoner_icon_id = style_data['profileIconId']
+        summoner_level = style_data['summonerLevel']
+
+        return jsonify({"summoner_icon_id": summoner_icon_id, "summoner_level": summoner_level})
+    
+    except requests.exceptions.HTTPError as http_err:
+        return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
+    except requests.exceptions.RequestException as req_err:
+        return jsonify({"error": f"Request error occurred: {req_err}"}), 500
+'''
