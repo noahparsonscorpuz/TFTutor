@@ -66,10 +66,3 @@ body {
     border-radius: 5px;
     border: 1px solid lightgrey;
 }
-
-.refresh-button {
-    height: 30px;
-    background-color: #333;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
-}

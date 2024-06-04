@@ -39,7 +39,6 @@ export const Landing = ({ handleSearchResult }) => {
           <input type="text" placeholder="Search a RiotID #Tagline" value={input} onChange={(e) => setInput(e.target.value)} className="search-input" />
           <button type="submit" className="search-button">Search</button>
         </form>
-        <button className="refresh-button">Refresh</button>
       </div>
     </div>
   );
