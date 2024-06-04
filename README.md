@@ -18,7 +18,7 @@ TFTutor is a machine learning-powered gameplay companion designed to analyze TFT
 
 ## Current TODO
 
-- Format the json data that is sucessfully being pulled from the Riot API.
+- Figure out some good UI practices... lol
 
 - Process and present the appropriate data visually (graphs, etc.). 
 
