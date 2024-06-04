@@ -1,4 +1,3 @@
-
 import './App.css';
 import Landing from './Components/Landing.jsx';
 import Profile from './Components/Profile.jsx';
@@ -34,7 +33,7 @@ function App() {
   return (
     <>
       <Landing handleSearchResult={handleSearchResult} />
-      {profileData && <Profile profileData={profileData} />}
+      {profileData && <Profile profileData={profileData} searchResult={searchResult} />}
       {profileData && <Matches profileData={profileData} />}
     </>
   );
