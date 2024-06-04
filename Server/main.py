@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 cors = CORS(app, origins='*')
 
-RIOT_API_KEY = 'RGAPI-ee9a89d5-339e-41b9-8476-73e6b1a10456' #
+RIOT_API_KEY = 'RGAPI-eef02b23-192f-4c88-8b9d-ac5912a899d4'
 RIOT_TFT_API_BASE_URL = 'https://na1.api.riotgames.com/tft'
 
 RANKED_TFT = 0
