@@ -10,9 +10,9 @@ function App() {
   const [profileData, setProfileData] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
 
-  const fetchProfileData = async () => {
+  const fetchProfileData = async (puuid) => { // Modify to accept puuid parameter
     try {
-      const response = await axios.get("http://localhost:8080/player-stats/1bkqBEIe4j1bE6G4RGQX_e99_u8VMO-kPHbVvH0ID_s4iwdLp8N3zpQYnw");
+      const response = await axios.get(`http://localhost:8080/player-stats/${puuid}`); // Use dynamic puuid
       setProfileData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -20,8 +20,10 @@ function App() {
   };
 
   useEffect(() => {
-    fetchProfileData();
-  }, []);
+    if (searchResult) { // Check if searchResult is not null
+      fetchProfileData(searchResult.puuid); // Pass puuid to fetchProfileData
+    }
+  }, [searchResult]); // Trigger effect when searchResult changes
 
   // Function to handle search result
   const handleSearchResult = (data) => {

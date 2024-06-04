@@ -1,31 +1,31 @@
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-cors = CORS(app, origins='*')
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 RIOT_API_KEY = 'RGAPI-eef02b23-192f-4c88-8b9d-ac5912a899d4'
 RIOT_TFT_API_BASE_URL = 'https://na1.api.riotgames.com/tft'
 
 RANKED_TFT = 0
 RANKED_TFT_DOUBLE_UP = 1
-
-@app.route('/player-stats/<summoner_id>')
-def get_player_stats(summoner_id):
-    # URL-encode the summoner name to handle special characters
-    summoner_id_encoded = requests.utils.quote(summoner_id)
     
-    # Endpoint to get summoner details
-    summoner_url = f'{RIOT_TFT_API_BASE_URL}/league/v1/entries/by-summoner/{summoner_id_encoded}'
-    
+@app.route('/player-stats/<puuid>')
+def get_player_stats(puuid):
     try:
+        # Endpoint to get summoner details using puuid
+        summoner_url = f'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={RIOT_API_KEY}'
+        
         # Fetch summoner details
-        summoner_response = requests.get(summoner_url, headers={'X-Riot-Token': RIOT_API_KEY})
+        summoner_response = requests.get(summoner_url)
         summoner_response.raise_for_status()  # Raise an HTTPError for bad responses
         summoner_data = summoner_response.json()
         
-        # Endpoint to get Summoner Stats
+        # Extract summoner ID from the response
+        summoner_id = summoner_data['id']
+        
+        # Endpoint to get summoner stats using summoner ID
         stats_url = f'{RIOT_TFT_API_BASE_URL}/league/v1/entries/by-summoner/{summoner_id}'
         
         # Fetch player stats
@@ -39,11 +39,11 @@ def get_player_stats(summoner_id):
         return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
     except requests.exceptions.RequestException as req_err:
         return jsonify({"error": f"Request error occurred: {req_err}"}), 500
+
     
 @app.route('/recent-matches/<puuid>')
 def get_recent_matches(puuid):
     try:
-
         # Endpoint to get recent matches
         matches_url = f'https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/{puuid}/ids'
         
