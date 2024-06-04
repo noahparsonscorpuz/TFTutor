@@ -8,6 +8,7 @@ import axios from 'axios';
 
 function App() {
   const [profileData, setProfileData] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
 
   const fetchProfileData = async () => {
     try {
@@ -22,9 +23,14 @@ function App() {
     fetchProfileData();
   }, []);
 
+  // Function to handle search result
+  const handleSearchResult = (data) => {
+    setSearchResult(data);
+  };
+
   return (
     <>
-      <Landing />
+      <Landing handleSearchResult={handleSearchResult} />
       {profileData && <Profile profileData={profileData} />}
       {profileData && <Matches profileData={profileData} />}
     </>

@@ -35,30 +35,6 @@ def get_player_stats(summoner_id):
         
         return jsonify(stats_data[RANKED_TFT])
     
-        '''
-        EXAMPLE:
-
-        URL: http://localhost:8080/player-stats/1bkqBEIe4j1bE6G4RGQX_e99_u8VMO-kPHbVvH0ID_s4iwdLp8N3zpQYnw
-      
-          Returning:
-                
-                {
-                    "freshBlood": false,
-                    "hotStreak": false,
-                    "inactive": false,
-                    "leagueId": "11620dac-b83d-45fe-bc93-e262c7eee03d",
-                    "leaguePoints": 39,
-                    "losses": 31,
-                    "puuid": "zJwPuTd2UJmzi49q8VHXNBktMCb_B6ILB_xzRy8MYukS9PzE2cWDVo60BII5tRngGgSRZnLCPSeWYA",
-                    "queueType": "RANKED_TFT",
-                    "rank": "II",
-                    "summonerId": "1bkqBEIe4j1bE6G4RGQX_e99_u8VMO-kPHbVvH0ID_s4iwdLp8N3zpQYnw",
-                    "tier": "PLATINUM",
-                    "veteran": false,
-                    "wins": 40
-                }
-        '''
-    
     except requests.exceptions.HTTPError as http_err:
         return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
     except requests.exceptions.RequestException as req_err:
@@ -77,6 +53,24 @@ def get_recent_matches(puuid):
         matches_data = matches_response.json()
         
         return jsonify(matches_data)
+    
+    except requests.exceptions.HTTPError as http_err:
+        return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500
+    except requests.exceptions.RequestException as req_err:
+        return jsonify({"error": f"Request error occurred: {req_err}"}), 500
+
+@app.route('/riot-api/<gameName>/<tagLine>')
+def search_riot_api(gameName, tagLine):
+    try:
+        # Construct the Riot API URL using the provided gameName and tagLine
+        riot_api_url = f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}'
+        
+        # Make a request to the Riot API
+        response = requests.get(riot_api_url, headers={'X-Riot-Token': RIOT_API_KEY})
+        response.raise_for_status()
+        data = response.json()
+        
+        return jsonify(data)
     
     except requests.exceptions.HTTPError as http_err:
         return jsonify({"error": f"HTTP error occurred: {http_err}"}), 500

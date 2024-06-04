@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Landing.css';
-import { useState } from 'react';
+import axios from 'axios';
 
 import whiteLogo from '../assets/whiteLogo.png';
 
-export const Landing = () => {
-    const [input, setInput] = useState("")
+export const Landing = ({ handleSearchResult }) => {
+  const [input, setInput] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("NA");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     
+    // Split the input into gameName and tagLine
+    const [gameName, tagLine] = input.split('#');
+
+    // Make API call
+    try {
+      const response = await axios.get(`http://localhost:8080/riot-api/${gameName}/${tagLine}`);
+      handleSearchResult(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      handleSearchResult(null);
+    }
+  };
+
   return (
     <div className="landing-container">
       <div className="logo-container">
@@ -14,12 +31,14 @@ export const Landing = () => {
         <span className="title">TFTutor</span>
       </div>
       <div className="search-container">
-        <select className="region-select">
+        <select className="region-select" value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)}>
           <option value="NA">NA</option>
           {/* Add more regions as options here when functioning... */}
         </select>
-        <input type="text" placeholder="Search a RiotID #Tagline" value={input} onChange={(e) => setInput(e.target.value)} className="search-input" />
-        <button className="search-button">Search</button>
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Search a RiotID #Tagline" value={input} onChange={(e) => setInput(e.target.value)} className="search-input" />
+          <button type="submit" className="search-button">Search</button>
+        </form>
         <button className="refresh-button">Refresh</button>
       </div>
     </div>
