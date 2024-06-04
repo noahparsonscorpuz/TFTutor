@@ -9,13 +9,24 @@ import axios from 'axios';
 function App() {
   const [profileData, setProfileData] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
+  const [summonerStyle, setSummonerStyle] = useState(null);
 
   const fetchProfileData = async (puuid) => { // Modify to accept puuid parameter
     try {
       const response = await axios.get(`http://localhost:8080/player-stats/${puuid}`); // Use dynamic puuid
       setProfileData(response.data);
+      fetchSummonerStyle(puuid);
     } catch (error) {
       console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchSummonerStyle = async (puuid) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/get_summoner_style?puuid=${puuid}`);
+      setSummonerStyle(response.data);
+    } catch (error) {
+      console.error('Error fetching summoner style:', error);
     }
   };
 
@@ -33,7 +44,7 @@ function App() {
   return (
     <>
       <Landing handleSearchResult={handleSearchResult} />
-      {profileData && <Profile profileData={profileData} searchResult={searchResult} />}
+      {profileData && <Profile profileData={profileData} searchResult={searchResult} summonerStyle={summonerStyle} />}
       {profileData && <Matches profileData={profileData} />}
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Profile.css';
 
-const Profile = ({ profileData, searchResult }) => {
+const Profile = ({ profileData, searchResult, summonerStyle}) => {
   if (!profileData) {
     return <div>Loading profile details...</div>;
   }
@@ -10,6 +10,8 @@ const Profile = ({ profileData, searchResult }) => {
     <div>
       <h2>TFT Profile</h2>
       <p><strong>Summoner:</strong> {searchResult.gameName}#{searchResult.tagLine}</p>
+      <p><strong>Summoner Icon ID:</strong> {summonerStyle.summoner_icon_id}</p>
+      <p><strong>Summoner Level:</strong> {summonerStyle.summoner_level}</p>
       <p><strong>Tier:</strong> {profileData.tier} {profileData.rank}</p>
       <p><strong>League Points:</strong> {profileData.leaguePoints}</p>
       <p><strong>Wins:</strong> {profileData.wins}</p>
