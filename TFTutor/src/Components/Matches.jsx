@@ -9,7 +9,6 @@ const Matches = ({ profileData }) => {
   const fetchRecentMatches = async (puuid) => {
     try {
       const response = await axios.get(`http://localhost:8080/recent-matches/${puuid}`);
-      console.log('Matches data:', response.data);
       setMatches(response.data);
     } catch (error) {
       console.error('Error fetching matches:', error);
