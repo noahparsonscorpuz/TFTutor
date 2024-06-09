@@ -1,11 +1,14 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-RIOT_API_KEY = 'RGAPI-13979695-5b61-4633-9323-a627e9278de3'
+load_dotenv()
+RIOT_API_KEY = os.getenv("API_KEY")
 RIOT_TFT_API_BASE_URL = 'https://na1.api.riotgames.com/tft'
 
 RANKED_TFT = 0
