@@ -41,6 +41,20 @@ const Profile = ({ profileData, searchResult, summonerStyle }) => {
     return <div>Loading profile details...</div>;
   }
   
+  const winStatistics = () => {
+    const { wins, losses } = profileData;
+    const matchesPlayed = wins + losses;
+  
+    // Handle case where no matches are played to avoid division by zero
+    if (matchesPlayed === 0) {
+      return [0, 0, 0, 0]; // or handle appropriately, maybe return null or NaN
+    }
+  
+    const winRatio = (wins / matchesPlayed) * 100;
+    return [wins, losses, winRatio.toFixed(1), matchesPlayed];
+  };
+  
+  
   return (
     <div className="profile-card-container">
     <div className="profile-card">
@@ -51,11 +65,12 @@ const Profile = ({ profileData, searchResult, summonerStyle }) => {
         <h2>{searchResult.gameName}#{searchResult.tagLine}</h2>
         <img src={generateRankEmblem()} alt={`${profileData.tier} Emblem`} className="rank-emblem" />
         <p><strong>Summoner Level:</strong> {summonerStyle?.summoner_level}</p>
-        <p><strong>Tier:</strong> {profileData.tier} {profileData.rank}</p>
-        {/*
-        <p><strong>League Points:</strong> {profileData.leaguePoints}</p>
-        <p><strong>Wins:</strong> {profileData.wins}</p>
-        <p><strong>Losses:</strong> {profileData.losses}</p>
+        <p><strong>Tier:</strong> {profileData.tier} {profileData.rank} <em>{profileData.leaguePoints}LP</em></p>
+        <p><strong>Wins:</strong> {winStatistics()[0]}</p>
+        <p><strong>Losses:</strong> {winStatistics()[1]}</p>
+        <p><strong>Win Percentage:</strong> {winStatistics()[2]}%</p>
+        <p><strong>Matches Played:</strong> {winStatistics()[3]}</p>
+      {/*
         <p><strong>Fresh Blood:</strong> {profileData.freshBlood ? 'Yes' : 'No'}</p>
         <p><strong>Hot Streak:</strong> {profileData.hotStreak ? 'Yes' : 'No'}</p>
         <p><strong>Veteran:</strong> {profileData.veteran ? 'Yes' : 'No'}</p>
