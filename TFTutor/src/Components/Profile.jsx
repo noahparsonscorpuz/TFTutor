@@ -57,20 +57,27 @@ const Profile = ({ profileData, searchResult, summonerStyle }) => {
   
   return (
     <div className="profile-card-container">
-    <div className="profile-card">
+    <div className="profile-card" >
       <div className="profile-icon-container">
         <img src={generateProfileIconURL()} alt="Summoner Icon" className="profile-icon" />
+        <h2>{searchResult.gameName}#{searchResult.tagLine}</h2>
       </div>
       <div className="profile-details">
-        <h2>{searchResult.gameName}#{searchResult.tagLine}</h2>
-        <img src={generateRankEmblem()} alt={`${profileData.tier} Emblem`} className="rank-emblem" />
-        <p><strong>Summoner Level:</strong> {summonerStyle?.summoner_level}</p>
-        <p><strong>Tier:</strong> {profileData.tier} {profileData.rank} <em>{profileData.leaguePoints}LP</em></p>
-        <p><strong>Wins:</strong> {winStatistics()[0]}</p>
-        <p><strong>Losses:</strong> {winStatistics()[1]}</p>
-        <p><strong>Win Percentage:</strong> {winStatistics()[2]}%</p>
-        <p><strong>Matches Played:</strong> {winStatistics()[3]}</p>
-      {/*
+        <div className="rank-details">
+          <img src={generateRankEmblem()} alt={`${profileData.tier} Emblem`} className="rank-emblem" />
+          <p className="lp-details">
+            <h1>{profileData.tier} {profileData.rank}</h1>
+            <progress value={profileData.leaguePoints} max={100} className="lp-bar"/>
+            <p>Tier Progress: {profileData.leaguePoints}</p>
+          </p>
+        </div>
+        <div className="win-statistics">
+          <p className="wins" ><strong>Wins:</strong> {winStatistics()[0]}</p>
+          <p><strong>Losses:</strong> {winStatistics()[1]}</p>
+          <p><strong>Win Percentage:</strong> {winStatistics()[2]}%</p>
+          <p><strong>Matches Played:</strong> {winStatistics()[3]}</p>
+        </div>
+      { /*<p><strong>Summoner Level:</strong> {summonerStyle?.summoner_level}</p>
         <p><strong>Fresh Blood:</strong> {profileData.freshBlood ? 'Yes' : 'No'}</p>
         <p><strong>Hot Streak:</strong> {profileData.hotStreak ? 'Yes' : 'No'}</p>
         <p><strong>Veteran:</strong> {profileData.veteran ? 'Yes' : 'No'}</p>
