@@ -30,4 +30,44 @@ TFTutor is a machine learning-powered gameplay companion designed to analyze TFT
 
 - CommunityDragon's Docs and CDN
 
-#### yes, my api key is public but its also expired - let me be...
+## Running TFTutor on your System
+
+1. Install needed requirements per the requirements.txt file by running:
+
+    - pip install -r requirements.txt
+
+*** Note: please run the script "pip freeze > requirements.txt" when adding new dependencies! ***
+
+2. In the terminal, navigate to the parent directory of "Sever", "TFTutor", etc.
+
+3. Execute the following:
+
+    - cd .\Server\
+    - .\venv\Scripts\Activate.ps1
+    - python .\main.py
+
+4. Now, in another terminal window, navigate to parent directory of "Sever", "TFTutor" once again.
+
+5. Execute the following: 
+
+    - cd .\TFTutor\
+    - npm run dev
+
+6. Finally, navigate to the link shown like below:
+
+PS C:\Users\LocalUser\Documents\React-Vite-Flask\TFTutor> npm run dev
+*** Note: path will look like "~\TFTutor> npm run dev" on Linux/macOS environments! ***
+
+> tftutor@0.0.0 dev
+> vite
+
+
+  VITE v5.2.12  ready in 537 ms
+
+  ➜  Local:   http://localhost:5173/ <---- ***LINK HERE***
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+7. Enjoy the wonders of TFTutor!
+
+
