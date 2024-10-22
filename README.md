@@ -64,7 +64,7 @@ PS C:\Users\LocalUser\Documents\React-Vite-Flask\TFTutor> npm run dev
 
   VITE v5.2.12  ready in 537 ms
 
-  ➜  Local:   http://localhost:5173/ <---- ***LINK HERE***
+  ➜  Local:   http://localhost:5173/ <---- **LINK HERE**
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
 
