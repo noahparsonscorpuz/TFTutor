@@ -8,6 +8,7 @@ import bronze from '../assets/rankEmblems/emblem-bronze.png';
 import silver from '../assets/rankEmblems/emblem-silver.png';
 import gold from '../assets/rankEmblems/emblem-gold.png';
 import platinum from '../assets/rankEmblems/emblem-platinum.png';
+import emerald from '../assets/rankEmblems/emblem-emerald.png';
 import diamond from '../assets/rankEmblems/emblem-diamond.png';
 import master from '../assets/rankEmblems/emblem-master.png';
 import grandmaster from '../assets/rankEmblems/emblem-grandmaster.png';
@@ -19,6 +20,7 @@ const rankEmblems = {
   SILVER: silver,
   GOLD: gold,
   PLATINUM: platinum,
+  EMERALD: emerald,
   DIAMOND: diamond,
   MASTER: master,
   GRANDMASTER: grandmaster,
@@ -77,13 +79,12 @@ const Profile = ({ profileData, searchResult, summonerStyle }) => {
           <p><strong>Win Percentage:</strong> {winStatistics()[2]}%</p>
           <p><strong>Matches Played:</strong> {winStatistics()[3]}</p>
         </div>
-      { /*<p><strong>Summoner Level:</strong> {summonerStyle?.summoner_level}</p>
+        <p><strong>Summoner Level:</strong> {summonerStyle?.summoner_level}</p>
         <p><strong>Fresh Blood:</strong> {profileData.freshBlood ? 'Yes' : 'No'}</p>
         <p><strong>Hot Streak:</strong> {profileData.hotStreak ? 'Yes' : 'No'}</p>
         <p><strong>Veteran:</strong> {profileData.veteran ? 'Yes' : 'No'}</p>
         <p><strong>Inactive:</strong> {profileData.inactive ? 'Yes' : 'No'}</p>
         <p><strong>PUUID:</strong> {profileData.puuid}</p>
-      */}
       </div>
     </div>
   </div>

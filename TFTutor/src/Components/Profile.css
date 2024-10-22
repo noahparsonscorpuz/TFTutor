@@ -49,8 +49,8 @@ progress::-webkit-progress-value {
 }
 
 .rank-emblem {
-  width: auto;
-  height: auto;
+  width: 400px;
+  height: 200px;
   margin: 10px 0;
   padding-right: 15px;
 }
