@@ -27,10 +27,11 @@
 
 .rank-details {
   display: flex;
+  width: 100%;
   background-color:  #3c3c3c; /* rgba(102, 51, 153); */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 10px;
   font-family: 'Arial', sans-serif;
 }
 
@@ -49,11 +50,13 @@ progress::-webkit-progress-value {
 }
 
 .rank-emblem {
-  width: 400px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   margin: 10px 0;
   padding-right: 15px;
-}
+  max-width: 300px;
+  max-height: 200px;
+} 
 
 .profile-details {
   display: flex;

@@ -29,5 +29,3 @@ TFTutor is a machine learning-powered gameplay companion designed to analyze TFT
 - Riot Games API
 
 - CommunityDragon's Docs and CDN
-
-#### yes, my api key is public but its also expired - let me be...
